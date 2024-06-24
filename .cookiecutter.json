@@ -1,0 +1,13 @@
+{
+  "_template": "gh:cjolowicz/cookiecutter-hypermodern-python",
+  "author": "Per Unneberg",
+  "copyright_year": "2024",
+  "development_status": "Development Status :: 4 - Beta",
+  "email": "per.unneberg@scilifelab.se",
+  "friendly_name": "D4Utils",
+  "github_user": "percyfal",
+  "license": "MIT",
+  "package_name": "d4utils",
+  "project_name": "d4utils",
+  "version": "0.1.0"
+}
