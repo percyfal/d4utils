@@ -1,4 +1,5 @@
 """Sphinx configuration."""
+
 project = "D4Utils"
 author = "Per Unneberg"
 copyright = "2024, Per Unneberg"
