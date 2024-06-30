@@ -38,13 +38,6 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
 
-
-      - name: List github workflows
-        run: |
-          ls
-          ls .github/workflows
-          which pip
-
       - name: Upgrade pip
         run: |
           pip install --constraint=${{ github.workspace }}/.github/workflows/constraints.txt pip
