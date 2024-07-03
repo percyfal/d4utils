@@ -33,6 +33,10 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v3
 
+      - name: Setup curlrc
+        run: |
+          echo "location" > $HOME/.curlrc
+
       - name: Set up Python ${{ matrix.python }}
         uses: actions/setup-python@v5
         with:

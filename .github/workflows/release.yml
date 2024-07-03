@@ -16,6 +16,10 @@ jobs:
         with:
           fetch-depth: 2
 
+      - name: Setup curlrc
+        run: |
+          echo "location" > $HOME/.curlrc
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:

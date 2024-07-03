@@ -57,10 +57,11 @@ def sum(
         futures.append(pool.submit(process_region_chunk, args))
 
     logger.info("Processing futures...")
+    writer = d4container.writer
     for x in tqdm(futures, disable=tqdm_disable):
         rname, y = x.result()
         chrom_name, begin, end = parse_region(rname)
-        d4container.writer.write_np_array(chrom_name, begin, y)
+        writer.write_np_array(chrom_name, begin, y)
 
 
 def process_region_chunk(

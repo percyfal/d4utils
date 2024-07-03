@@ -23,18 +23,31 @@
 
 ## Features
 
-- TODO
+_D4Utils_ summarizes per-base coverages from multiple D4 files in
+parallel. 
+
+### sum
+
+Sum per-base coverages over all files to generate a global coverage
+distribution for setting coverage-based accessibility mask thresholds.
+
+### count
+
+Count files with coverages within a user-defined range for setting accessibility mask thresholds based on number of individuals with sufficient coverage.
 
 ## Requirements
 
-- TODO
+- click
+- pyd4
+- tqdm
+- pandas
 
 ## Installation
 
-You can install _D4Utils_ via [pip] from [PyPI]:
+You can install _D4Utils_ via [pip] from the GitHub repository:
 
 ```console
-$ pip install d4utils
+$ pip install git+https://github.com/percyfal/d4utils
 ```
 
 ## Usage
