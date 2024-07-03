@@ -24,7 +24,7 @@
 ## Features
 
 _D4Utils_ summarizes per-base coverages from multiple D4 files in
-parallel. 
+parallel.
 
 ### sum
 
