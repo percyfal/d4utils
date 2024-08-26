@@ -10,6 +10,9 @@ jobs:
         py: ['3.9', '3.10', '3.11']
     steps:
       - uses: actions/checkout@v4
+      - name: Setup curlrc
+        run: |
+          echo "location" > $HOME/.curlrc
       - uses: eifinger/setup-rye@v3
       - run: rye pin ${{ matrix.py }}
       - run: |                    # abort if the lockfile changes
