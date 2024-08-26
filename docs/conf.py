@@ -2,7 +2,7 @@
 
 project = "D4Utils"
 author = "Per Unneberg"
-copyright = "2024, Per Unneberg"
+copyright = "2024, Per Unneberg"  # noqa
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",

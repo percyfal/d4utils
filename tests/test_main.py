@@ -1,7 +1,6 @@
 """Test cases for the __main__ module."""
 
 from click.testing import CliRunner
-
 from d4utils import __main__
 
 

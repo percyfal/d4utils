@@ -1,3 +1,4 @@
+# type: ignore
 """Sum d4 coverage tracks.
 
 Sum first track from multiple d4 files to a single-track file.
@@ -15,15 +16,10 @@ import pyd4
 from tqdm import tqdm
 
 from d4utils.arguments import outfile
-from d4utils.d4 import D4Container
-from d4utils.d4 import iter_chunks
-from d4utils.d4 import parse_region
-from d4utils.options import chunk_size_option
-from d4utils.options import cores_option
-from d4utils.options import regions_option
+from d4utils.d4 import D4Container, iter_chunks, parse_region
+from d4utils.options import chunk_size_option, cores_option, regions_option
 from d4utils.options import verbose_option as verbose
 from d4utils.queue import init_pool
-
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +31,7 @@ logger = logging.getLogger(__name__)
 @regions_option()
 @chunk_size_option()
 @cores_option()
-def sum(
+def sum(  # noqa
     path: list[pathlib.Path],
     outfile: pathlib.Path,
     regions: pd.DataFrame,
@@ -65,7 +61,7 @@ def sum(
 
 
 def process_region_chunk(
-    args: tuple[D4Container, str]
+    args: tuple[D4Container, str],
 ) -> tuple[str, npt.NDArray[np.int_]]:
     """Process region chunk."""
     d4c, rname = args

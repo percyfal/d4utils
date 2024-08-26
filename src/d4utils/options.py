@@ -2,8 +2,7 @@
 
 import logging
 import os
-from typing import Callable
-from typing import Union
+from typing import Callable, Union
 
 import click
 import numpy as np
@@ -23,7 +22,10 @@ def verbose_option(expose_value: bool = False) -> Callable[[FC], FC]:
         log_level = max(3 - value, 0) * 10
         logging.basicConfig(
             level=log_level,
-            format="%(asctime)s; %(levelname)s [%(name)s:%(funcName)s]: %(message)s",
+            format=(
+                "%(asctime)s; %(levelname)s "
+                "[%(name)s:%(funcName)s]: %(message)s"
+            ),
         )
         return log_level
 
@@ -52,7 +54,9 @@ def cores_option() -> Callable[[FC], FC]:
             raise ValueError("Cores must be greater than 0")
         return value
 
-    return click.option("-j", "--cores", help="number of cores", default=1, type=int)
+    return click.option(
+        "-j", "--cores", help="number of cores", default=1, type=int
+    )
 
 
 def chunk_size_option() -> Callable[[FC], FC]:
@@ -76,14 +80,19 @@ def regions_option() -> Callable[[FC], FC]:
     """Add regions option and parse arguments to a pandas DataFrame."""
 
     def regions_callback(
-        ctx: click.core.Context, param: click.core.Option, value: Union[str, None]
-    ) -> pd.DataFrame:
+        ctx: click.core.Context,
+        param: click.core.Option,
+        value: Union[str, None],
+    ) -> pd.DataFrame | None:
         """Regions callback."""
         if value is None:
             return None
         if os.path.isfile(value):
             return pd.read_table(
-                value, names=["chrom", "begin", "end"], usecols=[0, 1, 2], header=None
+                value,
+                names=["chrom", "begin", "end"],
+                usecols=[0, 1, 2],
+                header=None,
             )
 
         chrom, begin, end = parse_region(value)
@@ -122,7 +131,9 @@ def max_coverage_option() -> Callable[[FC], FC]:
     """Add max coverage option."""
 
     def max_coverage_callback(
-        ctx: click.core.Context, param: click.core.Option, value: Union[int, None]
+        ctx: click.core.Context,
+        param: click.core.Option,
+        value: Union[int, None],
     ) -> Union[int, float]:  # pylint: disable=unused-argument
         """Max coverage callback."""
         if value is None:
@@ -133,5 +144,8 @@ def max_coverage_option() -> Callable[[FC], FC]:
         return value
 
     return click.option(
-        "--max-coverage", help="max coverage", type=int, callback=max_coverage_callback
+        "--max-coverage",
+        help="max coverage",
+        type=int,
+        callback=max_coverage_callback,
     )

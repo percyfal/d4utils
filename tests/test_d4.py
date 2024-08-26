@@ -3,7 +3,6 @@
 import numpy as np
 import pyd4
 import pytest
-
 from d4utils.count import count
 from d4utils.sum import sum
 
