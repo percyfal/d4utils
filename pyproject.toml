@@ -12,7 +12,7 @@ dependencies = [
     "pandas~=2.2.2",
 ]
 readme = "README.md"
-requires-python = ">= 3.11"
+requires-python = ">= 3.10"
 
 [build-system]
 requires = ["pdm-backend"]
