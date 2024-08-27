@@ -1,3 +1,4 @@
+# type: ignore
 """Count coverages within a range.
 
 Count coverages within a range of values over a chromosome region over
@@ -16,17 +17,16 @@ import pyd4
 from tqdm import tqdm
 
 from d4utils.arguments import outfile
-from d4utils.d4 import D4Container
-from d4utils.d4 import iter_chunks
-from d4utils.d4 import parse_region
-from d4utils.options import chunk_size_option
-from d4utils.options import cores_option
-from d4utils.options import max_coverage_option
-from d4utils.options import min_coverage_option
-from d4utils.options import regions_option
+from d4utils.d4 import D4Container, iter_chunks, parse_region
+from d4utils.options import (
+    chunk_size_option,
+    cores_option,
+    max_coverage_option,
+    min_coverage_option,
+    regions_option,
+)
 from d4utils.options import verbose_option as verbose
 from d4utils.queue import init_pool
-
 
 logger = logging.getLogger(__name__)
 
@@ -74,7 +74,7 @@ def count(
 
 
 def process_region_chunk(
-    args: tuple[D4Container, str]
+    args: tuple[D4Container, str],
 ) -> tuple[str, npt.NDArray[np.int_]]:
     """Process region chunk."""
     d4c, rname = args

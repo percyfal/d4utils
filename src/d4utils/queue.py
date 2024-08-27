@@ -1,11 +1,10 @@
-"""This module provides a functionality to initilize and maintain a MaxQueuePool."""
+"""This module provides a functionality to initilize and maintain a
+MaxQueuePool."""
 
 import concurrent.futures
 import logging
 from threading import BoundedSemaphore
-from typing import Any
-from typing import Callable
-from typing import Union
+from typing import Any, Callable, Union
 
 
 class MaxQueuePool:
@@ -26,7 +25,7 @@ class MaxQueuePool:
         executor: type[concurrent.futures.ProcessPoolExecutor],
         *,
         max_queue_size: int,
-        max_workers: Union[int, Any] = None
+        max_workers: Union[int, Any] = None,
     ):
         """Initialize the pool with a maximum number of workers."""
         logging.info(
@@ -37,7 +36,9 @@ class MaxQueuePool:
         self.pool = executor(max_workers=max_workers)
         self.pool_queue = BoundedSemaphore(max_queue_size)
 
-    def submit(self, func: Callable[..., Any], *args: Any, **kwargs: Any) -> Any:
+    def submit(
+        self, func: Callable[..., Any], *args: Any, **kwargs: Any
+    ) -> Any:
         """Submit a new task to the pool.
 
         This will block if the queue is full.

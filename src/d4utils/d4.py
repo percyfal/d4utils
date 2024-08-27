@@ -3,20 +3,19 @@
 import logging
 import re
 from pathlib import Path
-from typing import Any
-from typing import Iterable
-from typing import Union
+from typing import Any, Iterable, Union
 
 import numpy as np
 import pyd4
 from pandas import DataFrame
 from tqdm import tqdm
 
-
 logger = logging.getLogger(__name__)
 
 
-def parse_region(region: str) -> tuple[Union[str, Any], int, Union[int, float]]:
+def parse_region(
+    region: str,
+) -> tuple[Union[str, Any], int, Union[int, float]]:
     """Parse region string."""
     m = re.match(r"([\w]+):([\d]+)-([\d]+)$", region)
     if m:
@@ -73,7 +72,9 @@ class D4Container:
         self._writer = None
         self._set_chroms(regions, concat)
 
-    def _set_chroms(self, regions: Union[None, DataFrame], concat: bool) -> None:
+    def _set_chroms(
+        self, regions: Union[None, DataFrame], concat: bool
+    ) -> None:
         """Set chroms."""
         self._chroms = []
         if concat:
@@ -101,7 +102,9 @@ class D4Container:
                         + "This is currently unsupported; "
                         + "using entire chromosome."
                     )
-                    logger.warning(s, chrom_name, begin, end, chromlen[chrom_name])
+                    logger.warning(
+                        s, chrom_name, begin, end, chromlen[chrom_name]
+                    )
                     begin = 0
                     end = chromlen[chrom_name]
                 if end > chromlen[chrom_name]:
@@ -157,6 +160,10 @@ class D4Container:
         return self._chunk_size
 
     @property
-    def writer(self) -> pyd4.D4File:
+    def writer(self) -> pyd4.D4Writer:
         """Return writer."""
-        return pyd4.D4Builder(str(self.outfile)).add_chroms(self.chroms).get_writer()
+        return (
+            pyd4.D4Builder(str(self.outfile))
+            .add_chroms(self.chroms)
+            .get_writer()
+        )
